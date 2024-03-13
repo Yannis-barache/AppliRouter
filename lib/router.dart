@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled3/navbar.dart';
+import 'package:GoRouterExample/navbar.dart';
+import 'package:GoRouterExample/pages.dart';
 import 'aboutPage.dart';
 import 'app.dart';
 
@@ -30,10 +31,18 @@ final GoRouter router = GoRouter(
           },
         ),
         GoRoute(
-          path: '/details/:id',
+          path: '/page/:label',
           builder: (context, state) {
-            return DetailsScreen(id: state.pathParameters['id']);
+            return LabelPage(label: state.pathParameters['label']);
           },
+          routes: [
+            GoRoute(
+              path: 'details/:id',
+              builder: (context, state) {
+                return DetailsScreen(id: state.pathParameters['id']);
+              },
+            ),
+          ],
         ),
       ],
     ),

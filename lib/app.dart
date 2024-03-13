@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => context.go('/details/Rebson'),
+          onPressed: () => context.go('/details'),
           child: const Text('Go to the Details screen'),
         ),
       ),

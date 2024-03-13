@@ -23,15 +23,15 @@ class ScaffoldNavBar extends StatelessWidget {
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                label: 'Accueil',
+                label: 'Page A',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.business),
-                label: 'About',
+                label: 'Page B',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.school),
-                label: 'Details',
+                label: 'Page C',
               ),
             ],
             currentIndex: value,
@@ -46,11 +46,11 @@ class ScaffoldNavBar extends StatelessWidget {
   void onItemTapped(int index) {
     _selectedIndex.value = index;
     if (index == 0) {
-      GoRouter.of(context).go('/');
+      GoRouter.of(context).go('/page/A');
     } else if (index == 1) {
-      GoRouter.of(context).go('/about');
+      GoRouter.of(context).go('/page/B');
     } else if (index == 2) {
-      GoRouter.of(context).go('/details/Navbar');
+      GoRouter.of(context).go('/page/C');
     }
   }
 }
