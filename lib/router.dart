@@ -38,6 +38,7 @@ final GoRouter router = GoRouter(
           routes: [
             GoRoute(
               path: 'details/:id',
+              parentNavigatorKey: _goRouterKey,
               builder: (context, state) {
                 return DetailsScreen(id: state.pathParameters['id']);
               },
