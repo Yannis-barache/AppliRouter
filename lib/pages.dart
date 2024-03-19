@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import 'Notifier/loginNotifier.dart';
 
 class LabelPage extends StatelessWidget {
   final label;
@@ -14,11 +17,19 @@ class LabelPage extends StatelessWidget {
         title: Text('Page '+(label ?? '')),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).go('/page/'+(label ?? 'A') +'/details/'+(label ?? 'A'));
-          }, child: Text('Details '+ (label ?? 'A')
-        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => context.go('/page/'+(label ?? '')+'/details/1'),
+              child: const Text('Go to the Details screen 1'),
+            ),
+            ElevatedButton(
+              onPressed: () => context.go('/page/'+(label ?? '')+'/details/2'),
+              child: const Text('Go to the Details screen 2'),
+            ),
+            ElevatedButton(onPressed: () => context.read<loginNotifier>().logout(), child: const Text('logout') ,)
+          ],
       ),
     ),
     );

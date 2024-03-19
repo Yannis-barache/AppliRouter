@@ -1,6 +1,8 @@
+import 'package:GoRouterExample/Notifier/loginNotifier.dart';
 import 'package:flutter/material.dart';
-import 'router.dart' as router;
+import 'router.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget
 {
@@ -8,9 +10,25 @@ class MyApp extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: router.router,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => loginNotifier()),
+        ProxyProvider<loginNotifier, AppRouter>(
+          update: (context, loginInfo, previous) => AppRouter(loginInfo : loginInfo),
+        ),
+      ],
+      child: Builder(
+        builder: (context) {
+          final router = Provider.of<AppRouter>(context).router;
+          return MaterialApp.router(
+            title: 'GoRouter Example',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            routerConfig: router,
+          );
+        },
+      ),
     );
   }
 }
@@ -27,7 +45,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => context.go('/details'),
+          onPressed: () => context.go('/about'),
           child: const Text('Go to the Details screen'),
         ),
       ),
